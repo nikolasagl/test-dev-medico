@@ -17,6 +17,7 @@
 <script src="<?= base_url('assets/js/jquery.validate.min.js')?>"></script>
 <script src="<?= base_url('assets/js/jquery.validate.traducao.js')?>"></script>
 <script src="<?= base_url('assets/js/datatables.min.js')?>"></script>
+<script src="<?= base_url('assets/js/bootstrap-select.min.js')?>"></script>
 <script src="<?= base_url('assets/js/bootbox.min.js')?>"></script>
 <script src="<?= base_url('assets/js/main.js')?>"></script>
 <?php

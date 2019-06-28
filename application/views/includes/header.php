@@ -20,6 +20,9 @@
 	<!-- DataTable -->
 	<link href="<?= base_url('assets/css/datatables.min.css')?>" rel="stylesheet">
 
+	<link href="<?= base_url('assets/css/bootstrap-select.min.css') ?>" rel="stylesheet" >
+
+
 </head>
 
 <body>

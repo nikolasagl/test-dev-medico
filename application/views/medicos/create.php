@@ -10,15 +10,39 @@
 
 		<div class="card-body">
 
+			<h4>Informações Gerais</h4>
+
+			<hr>
+
 			<div class="form-row">
 
-				<div class="form-group col-md-7">
+				<div class="form-group col-md-12">
 
 					<label for="nome">Nome</label>
 
 					<div class="input-group">
 
 						<input type="text" name="medico[nome]" class="form-control">
+
+						<div class="input-group-append">
+							<span class="input-group-text rounded-right">
+								<i class="fas fa-user fa-fw"></i>
+							</span>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="form-group col-md-7">
+
+					<label for="especialidades">Especialidades</label>
+
+					<div class="input-group">
+
+						<select multiple class="form-control selectpicker" name="medico[especialidade_id]">
+
+						</select>
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
@@ -49,6 +73,12 @@
 				</div>
 
 			</div>
+
+			<br>
+
+			<h4>Contato</h4>
+
+			<hr>
 
 			<div id="telefoneClone">
 
@@ -127,6 +157,34 @@
         </div>
 
       </div>
+
+			<br>
+
+			<h4>Endereço</h4>
+
+			<hr>
+
+			<div class="form-row">
+
+				<div class="form-group col-md-6">
+
+					<label for="estado">Estado</label>
+
+					<div class="input-group">
+
+						<select class="form-control" name="medico[estado_id]">
+
+						</select>
+
+					</div>
+
+				</div>
+
+				<div class="form-group col-md-6">
+
+				</div>
+
+			</div>
 
 		</div>
 
