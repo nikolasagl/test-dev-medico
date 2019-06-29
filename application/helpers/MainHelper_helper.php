@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ServiceHelper
+class MainHelper
 {
   public function fixTelefone($telefone)
   {
@@ -11,6 +11,19 @@ class ServiceHelper
     ];
 
     return $fixedTelefone;
+  }
+
+  public static function formatTelefone($data)
+  {
+    return substr_replace($data, '-', -4, 0);
+  }
+
+  public static function multiSelectValues($array){
+    $newarray = [];
+    foreach($array as $element){
+      array_push($newarray,$element->id);
+    }
+    return $newarray;
   }
 }
 

@@ -24,7 +24,7 @@
 
 </div>
 
-<form  id="formMedico" class="formMedico" name="formMedico" method="POST" action="<?= site_url('medico/store')?>">
+<form  id="formMedico" class="formMedico" name="formMedico" method="POST" action="<?= site_url('medico/update/'.$medico->id)?>">
 
 	<div class="card">
 
@@ -48,7 +48,7 @@
 
 					<div class="input-group">
 
-						<input type="text" name="medico[nome]" class="form-control" value="<?php echo set_value('medico[nome]'); ?>" placeholder="Digite o Nome">
+						<input type="text" name="medico[nome]" class="form-control" value="<?php echo $medico->nome; ?>" placeholder="Digite o Nome">
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
@@ -70,13 +70,13 @@
 
 					<div class="input-group">
 
-						<select multiple class="form-control selectpicker" name="medico[especialidade_id][]" value="<?php echo set_value('medico[especialidade_id][]'); ?>" placeholder="SELECIONE">
+						<select multiple class="form-control selectpicker" name="medico[especialidade_id][]" value="" placeholder="SELECIONE">
 
-							<option value="" selected disabled>SELECIONE</option>
+							<option value="">SELECIONE</option>
 
 							<?php foreach ($especialidades as $key => $especialidade) { ?>
 
-								<option value="<?php echo $especialidade->id ?>"><?php echo $especialidade->nome ?></option>
+								<option value="<?php echo $especialidade->id ?>" <?php in_array($especialidade->id, MainHelper::multiSelectValues($medico->especialidades)) ? print_r('selected') : '' ?>><?php echo $especialidade->nome ?></option>
 
 							<?php } ?>
 
@@ -102,7 +102,7 @@
 
 					<div class="input-group">
 
-						<input class="form-control" type="text" name="medico[crm]" value="<?php echo set_value('medico[crm]'); ?>" placeholder="Digite o CRM">
+						<input class="form-control" type="text" name="medico[crm]" value="<?php echo $medico->crm ?>" placeholder="Digite o CRM">
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
@@ -130,69 +130,75 @@
 
 				<div class="clone">
 
-					<div class="form-row telefone">
+          <?php foreach ($medico->telefones as $key => $telefone) { ?>
 
-						<div class="form-group col-md-4">
+            <div class="form-row telefone">
 
-							<label for="telefone">Tipo de Telefone</label>
+              <div class="form-group col-md-4">
 
-							<div class="input-group">
+                <label for="telefone">Tipo de Telefone</label>
 
-								<select class="form-control tipo_telefone" name="medico[telefone][0][tipo_telefone_id]">
+                <div class="input-group">
 
-									<option value="" selected disabled>SELECIONE</option>
+                  <select class="form-control tipo_telefone" name="medico[telefone][0][tipo_telefone_id]">
 
-									<?php foreach ($tipos_telefone as $key => $tipo) { ?>
+                    <option value="">SELECIONE</option>
 
-										<option value="<?php echo $tipo->id ?>" <?php echo  set_select('medico[telefone][0][tipo_telefone_id]', $tipo->id); ?>><?php echo $tipo->nome ?></option>
+                    <option value="<?php echo $telefone->tipoTelefone->id ?>" selected><?php echo $telefone->tipoTelefone->nome ?></option>
 
-									<?php } ?>
+                    <?php foreach ($tipos_telefone as $key => $tipo) { ?>
 
-								</select>
+                      <option value="<?php echo $tipo->id ?>" <?php $tipo->id == $telefone->tipoTelefone->id ? print_r('selected') : '' ?>><?php echo $tipo->nome ?></option>
 
-								<div class="input-group-append">
-									<span class="input-group-text rounded-right">
-										<i class="fas fa-user fa-fw"></i>
-									</span>
-								</div>
+                    <?php } ?>
 
-							</div>
+                  </select>
 
-							<span class="error-tipo_telefone help-block text-danger">
-								<?php if (!empty($errors['tipo_telefone'])) echo $errors['tipo_telefone'];?>
-							</span>
+                  <div class="input-group-append">
+                    <span class="input-group-text rounded-right">
+                      <i class="fas fa-user fa-fw"></i>
+                    </span>
+                  </div>
 
-						</div>
+                </div>
 
-						<div class="form-group col-md-8">
+                <span class="error-tipo_telefone help-block text-danger">
+                  <?php if (!empty($errors['tipo_telefone'])) echo $errors['tipo_telefone'];?>
+                </span>
 
-							<label for="telefone">DDD/Número</label>
+              </div>
 
-							<div class="input-group">
+              <div class="form-group col-md-8">
 
-								<input class="form-control col-md-2 ddd" type="text" name="medico[telefone][0][ddd]" value="<?php echo set_value('medico[telefone][0][ddd]'); ?>" placeholder="Digite o DDD">
+                <label for="telefone">DDD/Número</label>
 
-								<input class="form-control numero" type="text" name="medico[telefone][0][numero]" value="<?php echo set_value('medico[telefone][0][numero]'); ?>" placeholder="Digite o Número">
+                <div class="input-group">
 
-								<div class="input-group-append">
-									<span class="input-group-text rounded-right">
-										<i class="fas fa-user fa-fw"></i>
-									</span>
-								</div>
+                  <input class="form-control col-md-2 ddd" type="text" name="medico[telefone][0][ddd]" value="<?php echo $telefone->numero['ddd'] ?>" placeholder="Digite o DDD">
 
-							</div>
+                  <input class="form-control numero" type="text" name="medico[telefone][0][numero]" value="<?php echo $telefone->numero['numero'] ?>" placeholder="Digite o Número">
 
-							<span class="error-ddd help-block text-danger">
-								<?php if (!empty($errors['ddd'])) echo $errors['ddd'];?>
-							</span>
+                  <div class="input-group-append">
+                    <span class="input-group-text rounded-right">
+                      <i class="fas fa-user fa-fw"></i>
+                    </span>
+                  </div>
 
-							<span class="error-numero help-block text-danger">
-								<?php if (!empty($errors['numero'])) echo $errors['numero'];?>
-							</span>
+                </div>
 
-						</div>
+                <span class="error-ddd help-block text-danger">
+                  <?php if (!empty($errors['ddd'])) echo $errors['ddd'];?>
+                </span>
 
-					</div>
+                <span class="error-numero help-block text-danger">
+                  <?php if (!empty($errors['numero'])) echo $errors['numero'];?>
+                </span>
+
+              </div>
+
+            </div>
+
+          <?php } ?>
 
 				</div>
 
@@ -238,7 +244,7 @@
 
 							<?php foreach ($estados as $key => $estado) { ?>
 
-								<option value="<?php echo $estado->id ?>" <?php echo  set_select('medico[estado_id]', $estado->id); ?>><?php echo $estado->nome ?></option>
+								<option value="<?php echo $estado->id ?>" <?php $estado->id == $medico->endereco->cidade->estado->id ? print_r('selected') : '' ?>><?php echo $estado->nome ?></option>
 
 							<?php } ?>
 

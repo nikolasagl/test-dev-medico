@@ -15,47 +15,7 @@
       },
       callback: function (result) {
         if (result == true)
-        window.location.href = '<?= site_url("curso/") ?>' + funcao + '/' + id;
-      }
-    });
-  }
-
-  function exclude(id) {
-    bootbox.confirm({
-      message: "Realmente deseja desativar esse curso?",
-      buttons: {
-        confirm: {
-          label: 'Sim',
-          className: 'btn-success'
-        },
-        cancel: {
-          label: 'Não',
-          className: 'btn-danger'
-        }
-      },
-      callback: function (result) {
-        if (result)
-        window.location.href = '<?= base_url('index.php/Curso/deletar/') ?>' + id
-      }
-    });
-  }
-
-  function able(id) {
-    bootbox.confirm({
-      message: "Realmente deseja ativar esse curso?",
-      buttons: {
-        confirm: {
-          label: 'Sim',
-          className: 'btn-success'
-        },
-        cancel: {
-          label: 'Não',
-          className: 'btn-danger'
-        }
-      },
-      callback: function (result) {
-        if (result)
-        window.location.href = '<?= base_url("index.php/Curso/ativar/") ?>' + id
+        window.location.href = '<?= site_url("medico/") ?>' + funcao + '/' + id;
       }
     });
   }

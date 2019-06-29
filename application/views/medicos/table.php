@@ -26,7 +26,7 @@
 
     <?php foreach ($medicos as $medico) { ?>
 
-      <tr <?php $medico->deleted_at ? 'class="danger"' : '' ?>>
+      <tr class="<?= !empty($medico->deleted_at) ? 'table-danger' : '' ?>">
 
         <td class="text-center"><?= $medico->id; ?></td>
 
@@ -34,7 +34,7 @@
 
         <td class="text-center"><?= $medico->crm; ?></td>
 
-        <td class="text-center"><?= $medico->getEspecialidades($medico); ?></td>
+        <td class="text-center especialidades"><?= $medico->getEspecialidades($medico); ?></td>
 
         <td class="text-center"><?= $medico->endereco->cidade->estado->nome; ?></td>
 
@@ -42,17 +42,15 @@
 
         <td class="text-center">
 
+        <a class="btn btn-warning <?= !empty($medico->deleted_at) ? 'disabled' : ''?>" title="Editar" href="<?= site_url('medico/edit/'.$medico->id)?>"><i class="fas fa-pencil-alt fa-fw"></i></a>
+
           <?php if (empty($medico->deleted_at)) : ?>
 
-            <a class="btn btn-warning" title="Editar" href="<?= site_url('medico/editar/'.$medico->id)?>"><i class="fas fa-pencil-alt fa-fw"></i></a>
-
-            <button class="btn btn-danger" type="button" id="btn-delete" title="Desativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja desativar o Curso?','deletar')"><i class="fas fa-trash-alt fa-fw"></i></button>
+            <button class="btn btn-danger" type="button" id="btn-delete" title="Desativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja desativar o Medico?','destroy')"><i class="fas fa-trash-alt fa-fw"></i></button>
 
           <?php else : ?>
 
-            <a class="btn btn-warning disabled" title="Editar" href="<?= site_url('medico/editar/'.$medico->id)?>"><i class="fas fa-pencil-alt fa-fw"></i></a>
-
-            <button class="btn btn-success" type="button" id="btn-delete" title="Ativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja ativar o Curso?','ativar')"><i class="fas fa-recycle fa-fw"></i></button>
+            <button class="btn btn-success" type="button" id="btn-delete" title="Ativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja ativar o Medico?','restore')"><i class="fas fa-recycle fa-fw"></i></button>
 
           <?php endif; ?>
 

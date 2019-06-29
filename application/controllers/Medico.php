@@ -28,14 +28,13 @@ class Medico extends CI_Controller
       'cidade' => form_error('medico[endereco][cidade_id]'),
     ];
 
-    $this->load->template('medicos/create', compact('especialidades', 'tipos_telefone', 'estados', isset($errors) ? 'errors' : ''), 'medicos/js_medicos');
+    $this->load->template('medicos/create', compact('especialidades', 'tipos_telefone', 'estados', 'errors'), 'medicos/js_medicos');
   }
 
   public function store()
   {
     $input = $this->input->post();
 
-    // echo "<pre>"; print_r($input); exit;
     if ($this->validar($input)) {
 
       try {
@@ -57,7 +56,25 @@ class Medico extends CI_Controller
 
   public function edit($id)
   {
+    $medico = Medico_model::find($id);
 
+    // echo "<pre>"; print_r($medico); exit;
+    $especialidades = Especialidade_model::all();
+    $tipos_telefone = TipoTelefone_model::all();
+    $estados = Estado_model::all();
+
+    $errors = [
+      'nome' => form_error('medico[nome]'),
+      'especialidades' => form_error('medico[especialidade_id][]'),
+      'crm' => form_error('medico[crm]'),
+      'tipo_telefone' => form_error('medico[telefone][0][tipo_telefone_id]'),
+      'ddd' => form_error('medico[telefone][0][ddd]'),
+      'numero' => form_error('medico[telefone][0][numero]'),
+      'estado' => form_error('medico[endereco][estado_id]'),
+      'cidade' => form_error('medico[endereco][cidade_id]'),
+    ];
+
+    $this->load->template('medicos/edit', compact('medico', 'especialidades', 'tipos_telefone', 'estados', 'errors'), 'medicos/js_medicos');
   }
 
   public function update($id)

@@ -16,7 +16,7 @@ class MedicoService
       $medico->especialidades()->sync($input['medico']['especialidade_id']);
 
       foreach ($input['medico']['telefone'] as $key => $telefone) {
-        $medico->telefones()->save(new Telefone_model(ServiceHelper::fixTelefone($telefone)));
+        $medico->telefones()->save(new Telefone_model(MainHelper::fixTelefone($telefone)));
       }
 
       $endereco = new Endereco_model($input['medico']['endereco']);

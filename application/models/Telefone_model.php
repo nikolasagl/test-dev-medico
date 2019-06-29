@@ -22,4 +22,14 @@ class Telefone_model extends Eloquent {
     return $this->belongsTo(TipoTelefone_model::class, 'tipo_telefone_id');
   }
 
+  public function getNumeroAttribute()
+  {
+    $fixedTelefone = [
+      'ddd' => '('.substr($this->attributes['numero'], 0, 2).')',
+      'numero' => MainHelper::formatTelefone(substr($this->attributes['numero'], 2))
+    ];
+
+    return $fixedTelefone;
+  }
+
 }

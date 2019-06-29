@@ -14,9 +14,6 @@
 	<!-- Bootstrap -->
 	<link href="<?= base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
 
-	<!-- Style -->
-	<link href="<?= base_url('assets/css/style.css')?>" rel="stylesheet">
-
 	<!-- DataTable -->
 	<link href="<?= base_url('assets/css/datatables.min.css')?>" rel="stylesheet">
 
@@ -24,6 +21,9 @@
 
 	<link href="<?= base_url('assets/fontawesome/css/all.min.css') ?>" rel="stylesheet" >
 
+	<link href="<?= base_url('assets/css/style.css')?>" rel="stylesheet">
+
+	<link href="<?= base_url('assets/css/medico.css')?>" rel="stylesheet">
 
 </head>
 
