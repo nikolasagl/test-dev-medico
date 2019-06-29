@@ -28,21 +28,21 @@
 
       <tr class="<?= !empty($medico->deleted_at) ? 'table-danger' : '' ?>">
 
-        <td class="text-center"><?= $medico->id; ?></td>
+        <td class="text-center align-middle"><?= $medico->id; ?></td>
 
-        <td class="text-center"><?= $medico->nome; ?></td>
+        <td class="text-center align-middle"><?= $medico->nome; ?></td>
 
-        <td class="text-center"><?= $medico->crm; ?></td>
+        <td class="text-center align-middle"><?= $medico->crm; ?></td>
 
-        <td class="text-center especialidades"><?= $medico->getEspecialidades($medico); ?></td>
+        <td class="text-center align-middle especialidades"><?= $medico->getEspecialidades($medico); ?></td>
 
-        <td class="text-center"><?= $medico->endereco->cidade->estado->nome; ?></td>
+        <td class="text-center align-middle"><?= $medico->endereco->cidade->estado->nome; ?></td>
 
-        <td class="text-center"><?= is_null($medico->deleted_at) ? 'Ativado' : 'Desativado'?></td>
+        <td class="text-center align-middle"><?= is_null($medico->deleted_at) ? 'Ativado' : 'Desativado'?></td>
 
-        <td class="text-center">
+        <td class="text-center align-middle">
 
-        <a class="btn btn-warning <?= !empty($medico->deleted_at) ? 'disabled' : ''?>" title="Editar" href="<?= site_url('medico/edit/'.$medico->id)?>"><i class="fas fa-pencil-alt fa-fw"></i></a>
+        <a class="btn btn-secondary <?= !empty($medico->deleted_at) ? 'disabled' : ''?>" title="Editar" href="<?= site_url('medico/edit/'.$medico->id)?>"><i class="fas fa-pencil-alt"></i></a>
 
           <?php if (empty($medico->deleted_at)) : ?>
 

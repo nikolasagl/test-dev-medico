@@ -140,13 +140,13 @@
 
                 <div class="input-group">
 
-                  <select class="form-control tipo_telefone" name="medico[telefone][0][tipo_telefone_id]">
+                  <select class="form-control tipo_telefone" name="<?php echo 'medico[telefone]['.$key.'][tipo_telefone_id]' ?>">
 
                     <option value="">SELECIONE</option>
 
                     <option value="<?php echo $telefone->tipoTelefone->id ?>" selected><?php echo $telefone->tipoTelefone->nome ?></option>
 
-                    <?php foreach ($tipos_telefone as $key => $tipo) { ?>
+                    <?php foreach ($tipos_telefone as $tipo) { ?>
 
                       <option value="<?php echo $tipo->id ?>" <?php $tipo->id == $telefone->tipoTelefone->id ? print_r('selected') : '' ?>><?php echo $tipo->nome ?></option>
 
@@ -174,9 +174,9 @@
 
                 <div class="input-group">
 
-                  <input class="form-control col-md-2 ddd" type="text" name="medico[telefone][0][ddd]" value="<?php echo $telefone->numero['ddd'] ?>" placeholder="Digite o DDD">
+                  <input class="form-control col-md-2 ddd" type="text" name="<?php echo 'medico[telefone]['.$key.'][ddd]' ?>" value="<?php echo $telefone->numero['ddd'] ?>" placeholder="Digite o DDD">
 
-                  <input class="form-control numero" type="text" name="medico[telefone][0][numero]" value="<?php echo $telefone->numero['numero'] ?>" placeholder="Digite o Número">
+                  <input class="form-control numero" type="text" name="<?php echo 'medico[telefone]['.$key.'][numero]' ?>" value="<?php echo $telefone->numero['numero'] ?>" placeholder="Digite o Número">
 
                   <div class="input-group-append">
                     <span class="input-group-text rounded-right">
@@ -286,7 +286,7 @@
 
 			<a class="btn btn-md btn-danger" href="../">Cancelar</a>
 
-			<button class="btn btn-md btn-success" type="submit">Cadastrar</button>
+			<button class="btn btn-md btn-success" type="submit">Editar</button>
 
 		</div>
 

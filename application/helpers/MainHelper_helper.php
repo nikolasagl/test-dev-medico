@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MainHelper
 {
-  public function fixTelefone($telefone)
+  public static function fixTelefone($telefone)
   {
     $fixedTelefone = [
       'tipo_telefone_id' => $telefone['tipo_telefone_id'],

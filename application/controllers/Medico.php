@@ -41,24 +41,22 @@ class Medico extends CI_Controller
 
         $this->medicoservice->store($input);
 
-        $this->session->set_flashdata('success','Medico cadastrado com sucesso');
+        $this->session->set_flashdata('success','Registro cadastrado com sucesso');
 
         redirect('medico');
 
       } catch (\Exception $e) {}
     }
 
-    $this->session->set_flashdata('danger','Problemas ao cadastrar Medico, tente novamente!');
+    $this->session->set_flashdata('danger','Problemas ao cadastrar registro, tente novamente!');
 
     $this->create();
-
   }
 
   public function edit($id)
   {
     $medico = Medico_model::find($id);
 
-    // echo "<pre>"; print_r($medico); exit;
     $especialidades = Especialidade_model::all();
     $tipos_telefone = TipoTelefone_model::all();
     $estados = Estado_model::all();
@@ -79,7 +77,24 @@ class Medico extends CI_Controller
 
   public function update($id)
   {
+    $input = $this->input->post();
 
+    if ($this->validar($input)) {
+
+      try {
+
+        $this->medicoservice->update($input, $id);
+
+        $this->session->set_flashdata('success','Registro atualizado com sucesso');
+
+        redirect('medico');
+
+      } catch (\Exception $e) {}
+    }
+
+    $this->session->set_flashdata('danger','Problemas ao atualizar registro, tente novamente!');
+
+    $this->edit($id);
   }
 
   public function destroy($id)
