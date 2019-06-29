@@ -59,7 +59,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database','session');
+$autoload['libraries'] = array('database','form_validation','session','services/MedicoService');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('form', 'url');
+$autoload['helper'] = array('form', 'url', 'ServiceHelper');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('DB', 'Medico_model', 'Especialidade_model', 'Telefone_model', 'Medico_Especialidade_model', 'TipoTelefone_model');
+$autoload['model'] = array('DB', 'Medico_model', 'Especialidade_model', 'Telefone_model', 'TipoTelefone_model', 'Endereco_model', 'Cidade_model', 'Estado_model');

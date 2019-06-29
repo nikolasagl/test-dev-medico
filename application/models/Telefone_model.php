@@ -9,6 +9,17 @@ class Telefone_model extends Eloquent {
 
   protected $table = 'telefones';
 
-  protected $fillable = array('numero', 'medico_id', 'created_at', 'updated_at', 'deleted_at');
+  protected $fillable = array('numero', 'medico_id', 'tipo_telefone_id', 'created_at', 'updated_at', 'deleted_at');
+
+
+  public function medico()
+  {
+    return $this->belongsTo(Medico_model::class, 'medico_id');
+  }
+
+  public function tipoTelefone()
+  {
+    return $this->belongsTo(TipoTelefone_model::class, 'tipo_telefone_id');
+  }
 
 }

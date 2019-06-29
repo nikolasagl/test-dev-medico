@@ -27,83 +27,73 @@
 
 		</div>
 
-		<!-- Início do conteúdo da view-->
-		<div class="top-bar" style="padding: 0 0 15px 0">
+		<div class="card">
 
-			<div class="row">
+			<div class="card-header" style="height:90px;">
+
+				<!-- Início do conteúdo da view-->
+				<div class="top-bar" style="padding: 0 0 15px 0">
+
+					<div class="row">
+
+						<div class="col-md-8">
+
+							<h2 class="page-header">Medicos
+
+								<a class="btn btn-success" href="<?= base_url('index.php/medico/create')?>"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+
+							</h2>
+
+						</div>
+
+						<div class="col-md-4" style="margin-top:-25px;">
+
+							<form class="" action="" method="post">
+
+								<div class="form-group col-md-12">
+
+									<div class="input-group">
+
+										<input type="text" name="search_field" class="form-control search_field" placeholder="Busque por Nome ou por CRM...">
+
+										<div class="input-group-append">
+											<span class="input-group-text rounded-right">
+												<i class="fas fa-search fa-fw"></i>
+											</span>
+										</div>
+
+									</div>
+
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="card-body">
+
+				<div id="medicoTable">
+
+				</div>
+
+			</div>
+
+			<div class="card-footer">
 
 				<div class="col-md-12">
 
-					<h2 class="page-header">Medicos
-
-						<a class="btn btn-success" href="<?= base_url('index.php/medico/create')?>"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-
-					</h2>
+					<p class="text-center"><strong>Desenvolvido por Níkolas Lencioni</strong></p>
 
 				</div>
 
 			</div>
 
 		</div>
-
-		<table id="medicoTable" class="display" style="width: 100%">
-
-			<thead>
-
-				<tr>
-
-					<th class="text-center">#</th>
-
-					<th class="text-center">Nome</th>
-
-					<th class="text-center">CRM</th>
-
-					<th class="text-center">Status</th>
-
-					<th class="text-center">Ações</th>
-
-				</tr>
-
-			</thead>
-
-			<tbody>
-
-				<?php foreach ($medicos as $medico) { ?>
-
-					<tr <?php $medico->deleted_at ? 'class="danger"' : '' ?>>
-
-						<td class="text-center"><?= $medico['id']; ?></td>
-
-						<td class="text-center"><?= $medico['nome']; ?></td>
-
-						<td class="text-center"><?= $medico['crm']; ?></td>
-
-						<td class="text-center"><?= !is_null($medico->deleted_at) ? 'Ativado' : 'Desativado'?></td>
-
-						<td class="text-center">
-
-							<?php if ( empty($medico->deleted_at) ) : ?>
-
-								<a class="btn btn-warning glyphicon glyphicon-pencil" title="Editar" href="<?= site_url('medico/editar/'.$medico->id)?>"></a>
-
-								<button class="btn btn-danger" type="button" id="btn-delete" title="Desativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja desativar o Curso?','deletar')"> <i class="glyphicon glyphicon-remove"></i></button>
-
-							<?php else : ?>
-
-								<a class="btn btn-warning glyphicon glyphicon-pencil disabled" title="Editar" href="<?= site_url('medico/editar/'.$medico->id)?>"></a>
-
-								<button class="btn btn-success" type="button" id="btn-delete" title="Ativar" onclick="confirmDelete(<?= $medico->id ?>,'Deseja ativar o Curso?','ativar')"> <i class="glyphicon glyphicon-check"></i></button>
-
-							<?php endif; ?>
-
-						</td>
-
-					</tr>
-
-				<?php } ?>
-
-			</tbody>
-
-		</table>
 
 	</div>

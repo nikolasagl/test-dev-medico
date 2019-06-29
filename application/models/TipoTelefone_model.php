@@ -8,4 +8,8 @@ class TipoTelefone_model extends Eloquent {
   protected $table = 'tipos_telefone';
   protected $fillable = array('nome');
 
+  function telefones()
+  {
+    return $this->hasMany(Telefone_model::class, 'tipo_telefone_id', 'id');
+  }
 }

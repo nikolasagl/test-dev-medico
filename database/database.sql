@@ -22,7 +22,7 @@
   USE `medicos` ;
 
   -- -----------------------------------------------------
-  -- Table `medicos`.`medico`
+  -- Table `medicos`.`medicos`
   -- -----------------------------------------------------
   DROP TABLE IF EXISTS `medicos`.`medicos` ;
 
@@ -69,7 +69,7 @@
   )ENGINE = InnoDB;
 
   -- -----------------------------------------------------
-  -- Table `medicos`.`telefones`
+  -- Table `medicos`.`tipos_telefone`
   -- -----------------------------------------------------
   DROP TABLE IF EXISTS `medicos`.`tipos_telefone` ;
 
@@ -97,6 +97,51 @@
     PRIMARY KEY (`id`)
   )ENGINE = InnoDB;
 
+
+  -- -----------------------------------------------------
+  -- Table `medicos`.`enderecos`
+  -- -----------------------------------------------------
+  DROP TABLE IF EXISTS `medicos`.`enderecos` ;
+
+  CREATE TABLE IF NOT EXISTS `medicos`.`enderecos` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `medico_id` INT(11) UNSIGNED NOT NULL,
+    `cidade_id` INT(11) UNSIGNED NOT NULL,
+
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `deleted_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  )ENGINE = InnoDB;
+
+
+  -- -----------------------------------------------------
+  -- Table `medicos`.`cidades`
+  -- -----------------------------------------------------
+  DROP TABLE IF EXISTS `medicos`.`cidades` ;
+
+  CREATE TABLE IF NOT EXISTS `medicos`.`cidades` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(200) NOT NULL,
+    `estado_id` INT(11) UNSIGNED NOT NULL,
+
+    PRIMARY KEY (`id`)
+  )ENGINE = InnoDB;
+
+  -- -----------------------------------------------------
+  -- Table `medicos`.`estados`
+  -- -----------------------------------------------------
+  DROP TABLE IF EXISTS `medicos`.`estados` ;
+
+  CREATE TABLE IF NOT EXISTS `medicos`.`estados` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `sigla` VARCHAR(3) NOT NULL,
+    `nome` VARCHAR(200) NOT NULL,
+
+    PRIMARY KEY (`id`)
+  )ENGINE = InnoDB;
+
+
   ALTER TABLE `telefones` ADD CONSTRAINT `telefones_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `medicos`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
   ALTER TABLE `telefones` ADD CONSTRAINT `telefones_tipo_telefone_id_foreign` FOREIGN KEY (`tipo_telefone_id`) REFERENCES `tipos_telefone`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -104,6 +149,13 @@
   ALTER TABLE `medicos_especialidades` ADD CONSTRAINT `medicos_especialidades_especialidade_id_foreign` FOREIGN KEY (`especialidade_id`) REFERENCES `especialidades`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
   ALTER TABLE `medicos_especialidades` ADD CONSTRAINT `medicos_especialidades_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `medicos`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+  ALTER TABLE `enderecos` ADD CONSTRAINT `enderecos_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `medicos`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+  ALTER TABLE `enderecos` ADD CONSTRAINT `enderecos_cidade_id_foreign` FOREIGN KEY (`cidade_id`) REFERENCES `cidades`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+  ALTER TABLE `cidades` ADD CONSTRAINT `cidades_estado_id_foreign` FOREIGN KEY (`estado_id`) REFERENCES `estados`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 
   -- -----------------------------------------------------
   -- Inserção de dados

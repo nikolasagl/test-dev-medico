@@ -22,6 +22,8 @@
 
 	<link href="<?= base_url('assets/css/bootstrap-select.min.css') ?>" rel="stylesheet" >
 
+	<link href="<?= base_url('assets/fontawesome/css/all.min.css') ?>" rel="stylesheet" >
+
 
 </head>
 

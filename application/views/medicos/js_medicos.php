@@ -1,13 +1,5 @@
 <script>
 
-$(document).ready(function () {
-  $('#medicoTable').DataTable();
-});
-
-</script>
-
-<script>
-
   function confirmDelete(id, msg, funcao) {
     bootbox.confirm({
       message: msg,
@@ -108,6 +100,37 @@ $(document).ready(function () {
     }
   })
 
+</script>
+
+<script>
+
+  $(document).ready(function() {
+
+    $('#estado').on('change', function() {
+
+      var estado_id = $(this).val()
+
+      $.ajax({
+        method: 'POST',
+        url: 'http://localhost/test-dev-medico/index.php/ajax/findCidade',
+        data: {term: estado_id},
+        success: function(data) {
+
+          $('#cidade').html('<option value="">SELECIONE</option>')
+
+          cidades = $.parseJSON(data)
+
+          for (var i = 0; i < cidades.length; i++) {
+
+            $('#cidade').append('<option value="' + cidades[i].id + '">' + cidades[i].nome + '</option>')
+          }
+        }
+
+      })
+
+    })
+
+  })
 
 </script>
 
