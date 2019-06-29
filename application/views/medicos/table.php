@@ -34,9 +34,9 @@
 
         <td class="text-center"><?= $medico->crm; ?></td>
 
-        <td class="text-center"><?= $medico->especialidades; ?></td>
+        <td class="text-center"><?= $medico->getEspecialidades($medico); ?></td>
 
-        <td class="text-center"><?= $medico->endereco->cidade->estado->id; ?></td>
+        <td class="text-center"><?= $medico->endereco->cidade->estado->nome; ?></td>
 
         <td class="text-center"><?= is_null($medico->deleted_at) ? 'Ativado' : 'Desativado'?></td>
 

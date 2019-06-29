@@ -28,4 +28,16 @@ class Medico_model extends Eloquent {
     return $this->hasOne(Endereco_model::class, 'medico_id', 'id');
   }
 
+  public function getEspecialidades($medico)
+  {
+    $string = '';
+
+    foreach ($medico->especialidades as $key => $especialidade) {
+
+      $string .= $key == 0 ? $especialidade->nome : ' | '.$especialidade->nome  ;
+    }
+
+    return $string;
+  }
+
 }
