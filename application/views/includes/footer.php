@@ -25,7 +25,6 @@
 
 <script src="<?= base_url('assets/js/$_medicos.js')?>"></script>
 
-<!-- <script src="<?= base_url('assets/js/$_medico-validation.js')?>"></script> -->
 
 <?php
 		unset($_SESSION['danger']);

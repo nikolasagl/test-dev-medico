@@ -137,7 +137,7 @@ class Medico extends CI_Controller
   {
     $this->form_validation->set_rules('medico[nome]', 'Nome', 'required|max_length[150]|min_length[3]');
     $this->form_validation->set_rules('medico[crm]', 'CRM', 'required|numeric|max_length[15]|min_length[2]');
-    $this->form_validation->set_rules('medico[especialidade_id][]', 'Especialidades', 'required|min_length[2]',  array('min_length' => 'Selecione ao menos 2 Especialidades.'));
+    $this->form_validation->set_rules('medico[especialidade_id][]', 'Especialidades', 'required|callback_check_length');
     $this->form_validation->set_rules('medico[endereco][estado_id]', 'Estado', 'required');
     $this->form_validation->set_rules('medico[endereco][cidade_id]', 'Cidade', 'required');
 
@@ -150,6 +150,7 @@ class Medico extends CI_Controller
 
     return $this->form_validation->run();
   }
+
 
   public function find()
   {

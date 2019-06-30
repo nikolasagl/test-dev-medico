@@ -72,6 +72,7 @@ function confirmDelete(id, msg, funcao) {
     callback: function (result) {
       if (result == true)
       window.location.href = 'http://localhost/test-dev-medico/index.php/medico/' + funcao + '/' + id;
+      // window.location.href = 'https://nikolaslencioni.000webhostapp.com/test/index.php/medico/' + funcao + '/' + id; // ON PRODUCTION
     }
   });
 }
@@ -92,6 +93,7 @@ function findCidade(estado_id, cidade_id=null)
   $.ajax({
     method: 'POST',
     url: 'http://localhost/test-dev-medico/index.php/ajax/findCidade',
+    // url: 'https://nikolaslencioni.000webhostapp.com/test/index.php/ajax/findCidade', // ON PRODUCTION
     data: {term: estado_id},
     success: function(data) {
 
