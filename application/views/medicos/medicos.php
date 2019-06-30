@@ -85,7 +85,7 @@
 
 			<div class="card-body">
 
-				<div id="medicoTable">
+				<div id="medicoTable" class="table-responsive">
 
 				</div>
 

@@ -90,7 +90,7 @@
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
-								<i class="fas fa-user fa-fw"></i>
+								<i class="fas fa-tasks"></i>
 							</span>
 						</div>
 
@@ -112,7 +112,7 @@
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
-								<i class="fas fa-user fa-fw"></i>
+								<i class="fas fa-id-card"></i>
 							</span>
 						</div>
 
@@ -158,7 +158,7 @@
 
 								<div class="input-group-append">
 									<span class="input-group-text rounded-right">
-										<i class="fas fa-user fa-fw"></i>
+										<i class="fas fa-phone"></i>
 									</span>
 								</div>
 
@@ -182,7 +182,7 @@
 
 								<div class="input-group-append">
 									<span class="input-group-text rounded-right">
-										<i class="fas fa-user fa-fw"></i>
+										<i class="fas fa-phone"></i>
 									</span>
 								</div>
 
@@ -252,7 +252,7 @@
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
-								<i class="fas fa-user fa-fw"></i>
+								<i class="fas fa-map-marked-alt"></i>
 							</span>
 						</div>
 
@@ -278,7 +278,7 @@
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
-								<i class="fas fa-user fa-fw"></i>
+								<i class="fas fa-map-marker-alt"></i>
 							</span>
 						</div>
 
