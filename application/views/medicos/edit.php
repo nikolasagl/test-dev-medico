@@ -1,20 +1,28 @@
-<div class="row" style="margin-top: 5px;width: 100%;">
+<div class="row alert-div">
 
 	<div class="col-md-12">
 
 		<?php if ($this->session->flashdata('success')) : ?>
 
-			<div class="alert alert-success">
+			<div class="alert alert-success alert-dismissible fade show">
 
-				<p><span class="glyphicon glyphicon-ok-sign"></span> <?= $this->session->flashdata('success') ?></p>
+				<p><?= $this->session->flashdata('success') ?></p>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
 
 			</div>
 
 		<?php elseif ($this->session->flashdata('danger')) : ?>
 
-			<div class="alert alert-danger">
+			<div class="alert alert-danger alert-dismissible fade show">
 
-				<p><span class="glyphicon glyphicon-remove-sign"></span> <?= $this->session->flashdata('danger') ?></p>
+				<p><?= $this->session->flashdata('danger') ?></p>
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
 
 			</div>
 
@@ -24,7 +32,7 @@
 
 </div>
 
-<form  id="formMedico" class="formMedico" name="formMedico" method="POST" action="<?= site_url('medico/update/'.$medico->id)?>">
+<form  id="formMedicoEdit" class="formMedicoEdit" name="formMedicoEdit" method="POST" action="<?= site_url('medico/update/'.$medico->id)?>">
 
 	<div class="card">
 
@@ -48,7 +56,7 @@
 
 					<div class="input-group">
 
-						<input type="text" name="medico[nome]" class="form-control" value="<?php echo $medico->nome; ?>" placeholder="Digite o Nome">
+						<input type="text" name="medico[nome]" class="form-control nome" value="<?php echo $medico->nome; ?>" placeholder="Digite o Nome">
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
@@ -70,9 +78,7 @@
 
 					<div class="input-group">
 
-						<select multiple class="form-control selectpicker" name="medico[especialidade_id][]" value="" placeholder="SELECIONE">
-
-							<option value="">SELECIONE</option>
+						<select multiple class="form-control selectpicker especialidades" data-selected-text-format="count > 3" name="medico[especialidade_id][]" value="" title="SELECIONE">
 
 							<?php foreach ($especialidades as $key => $especialidade) { ?>
 
@@ -102,7 +108,7 @@
 
 					<div class="input-group">
 
-						<input class="form-control" type="text" name="medico[crm]" value="<?php echo $medico->crm ?>" placeholder="Digite o CRM">
+						<input class="form-control crm" type="text" name="medico[crm]" value="<?php echo $medico->crm ?>" placeholder="Digite o CRM">
 
 						<div class="input-group-append">
 							<span class="input-group-text rounded-right">
@@ -140,7 +146,7 @@
 
                 <div class="input-group">
 
-                  <select class="form-control tipo_telefone" name="<?php echo 'medico[telefone]['.$key.'][tipo_telefone_id]' ?>">
+                  <select class="form-control tipo_telefone selectpicker" name="<?php echo 'medico[telefone]['.$key.'][tipo_telefone_id]' ?>">
 
                     <option value="">SELECIONE</option>
 
@@ -208,7 +214,7 @@
 
         <div class="col-md-1">
 
-					<button id="adicionarTel" class="btn btn-sm btn-primary" type="button" name="adicionar" style="width:100%;margin-bottom:20px;">
+					<button id="adicionarTel" class="btn btn-sm btn-info btn-tel" type="button" name="adicionar">
 						<span>Adicionar</span>
 					</button>
 
@@ -216,7 +222,7 @@
 
         <div class="col-md-1">
 
-					<button id="excluirTel" class="btn btn-sm btn-warning" type="button" name="excluir" style="width:100%;margin-bottom:20px;">
+					<button id="excluirTel" class="btn btn-sm btn-warning btn-tel" type="button" name="excluir">
 						<span>Remover</span>
 					</button>
 
@@ -238,7 +244,7 @@
 
 					<div class="input-group">
 
-						<select id="estado" class="form-control" name="medico[endereco][estado_id]">
+						<select id="estado" class="form-control selectpicker estado-edit" data-size="7" data-live-search="true" name="medico[endereco][estado_id]">
 
 							<option value="" selected disabled>SELECIONE</option>
 
@@ -249,6 +255,12 @@
 							<?php } ?>
 
 						</select>
+
+						<div class="input-group-append">
+							<span class="input-group-text rounded-right">
+								<i class="fas fa-user fa-fw"></i>
+							</span>
+						</div>
 
 					</div>
 
@@ -264,11 +276,19 @@
 
 					<div class="input-group">
 
-						<select id="cidade" class="form-control" name="medico[endereco][cidade_id]">
+						<input id="old_cidade" type="hidden" name="medico_old_cidade_id" value="<?php echo $medico->endereco->cidade->id ?>">
+
+						<select id="cidade" class="form-control selectpicker cidade" data-size="10" data-live-search="true" name="medico[endereco][cidade_id]">
 
 							<option value="" selected disabled>SELECIONE</option>
 
 						</select>
+
+						<div class="input-group-append">
+							<span class="input-group-text rounded-right">
+								<i class="fas fa-user fa-fw"></i>
+							</span>
+						</div>
 
 					</div>
 
@@ -286,7 +306,7 @@
 
 			<a class="btn btn-md btn-danger" href="../">Cancelar</a>
 
-			<button class="btn btn-md btn-success" type="submit">Editar</button>
+			<button class="btn btn-md btn-warning" type="submit">Editar</button>
 
 		</div>
 

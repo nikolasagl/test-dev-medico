@@ -28,7 +28,7 @@
 
   CREATE TABLE IF NOT EXISTS `medicos`.`medicos` (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `nome` VARCHAR(50) NOT NULL,
+    `nome` VARCHAR(150) NOT NULL,
     `crm` VARCHAR(15) NOT NULL,
 
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

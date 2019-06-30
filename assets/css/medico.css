@@ -1,3 +1,38 @@
 table td.especialidades {
   max-width: 500px;
 }
+
+.bootstrap-select .btn {
+  background-color: white;
+  border-color: rgb(206, 212, 218);
+  border-style: solid;
+  color: black;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+th {
+    background-color: #ffffa3;
+    color: black;
+}
+
+tr {
+  background-color: #fffff5;
+}
+
+.btn-tel {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table-inactive {
+  color: #dc3545;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.alert-div {
+  width: 100% !important;
+}

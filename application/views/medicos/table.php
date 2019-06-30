@@ -1,6 +1,6 @@
-<table class="display table table-bordered table-hover" style="width: 100%">
+<table class="display table table-bordered table-hover">
 
-  <thead class="thead-light">
+  <thead>
 
     <tr>
 
@@ -26,7 +26,7 @@
 
     <?php foreach ($medicos as $medico) { ?>
 
-      <tr class="<?= !empty($medico->deleted_at) ? 'table-danger' : '' ?>">
+      <tr class="<?= !empty($medico->deleted_at) ? 'table-inactive' : '' ?>">
 
         <td class="text-center align-middle"><?= $medico->id; ?></td>
 
@@ -42,7 +42,7 @@
 
         <td class="text-center align-middle">
 
-        <a class="btn btn-secondary <?= !empty($medico->deleted_at) ? 'disabled' : ''?>" title="Editar" href="<?= site_url('medico/edit/'.$medico->id)?>"><i class="fas fa-pencil-alt"></i></a>
+        <a class="btn btn-warning btn-edit <?= !empty($medico->deleted_at) ? 'disabled' : ''?>" title="Editar" href="<?= site_url('medico/edit/'.$medico->id)?>"><i class="fas fa-pencil-alt"></i></a>
 
           <?php if (empty($medico->deleted_at)) : ?>
 

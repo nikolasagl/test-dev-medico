@@ -8,7 +8,7 @@ class Medico extends CI_Controller
 
     $medicos = Medico_model::withTrashed()->get();
 
-    $this->load->template('medicos/medicos', compact('medicos'), 'medicos/js_medicos');
+    $this->load->template('medicos/medicos', compact('medicos'));
   }
 
   public function create()
@@ -28,7 +28,7 @@ class Medico extends CI_Controller
       'cidade' => form_error('medico[endereco][cidade_id]'),
     ];
 
-    $this->load->template('medicos/create', compact('especialidades', 'tipos_telefone', 'estados', 'errors'), 'medicos/js_medicos');
+    $this->load->template('medicos/create', compact('especialidades', 'tipos_telefone', 'estados', 'errors'));
   }
 
   public function store()
@@ -72,7 +72,7 @@ class Medico extends CI_Controller
       'cidade' => form_error('medico[endereco][cidade_id]'),
     ];
 
-    $this->load->template('medicos/edit', compact('medico', 'especialidades', 'tipos_telefone', 'estados', 'errors'), 'medicos/js_medicos');
+    $this->load->template('medicos/edit', compact('medico', 'especialidades', 'tipos_telefone', 'estados', 'errors'));
   }
 
   public function update($id)
@@ -99,27 +99,53 @@ class Medico extends CI_Controller
 
   public function destroy($id)
   {
+    try {
 
+      $this->medicoservice->destroy($id);
+
+      $this->session->set_flashdata('success','Registro inativado com sucesso');
+
+      redirect('medico');
+
+    } catch (\Exception $e) {
+
+      $this->session->set_flashdata('danger','Problemas ao inativar, tente novamente!');
+
+      redirect('medico');
+    }
   }
 
   public function restore($id)
   {
+    try {
 
+      $this->medicoservice->restore($id);
+
+      $this->session->set_flashdata('success','Registro reativado com sucesso');
+
+      redirect('medico');
+
+    } catch (\Exception $e) {
+
+      $this->session->set_flashdata('danger','Problemas ao reativar registro, tente novamente!');
+
+      redirect('medico');
+    }
   }
 
   public function validar($input, $id=null)
   {
-    $this->form_validation->set_rules('medico[nome]', 'Nome', 'required');
-    $this->form_validation->set_rules('medico[crm]', 'CRM', 'required');
-    $this->form_validation->set_rules('medico[especialidade_id][]', 'Especialidades', 'required');
+    $this->form_validation->set_rules('medico[nome]', 'Nome', 'required|max_length[150]|min_length[3]');
+    $this->form_validation->set_rules('medico[crm]', 'CRM', 'required|numeric|max_length[15]|min_length[2]');
+    $this->form_validation->set_rules('medico[especialidade_id][]', 'Especialidades', 'required|min_length[2]',  array('min_length' => 'Selecione ao menos 2 Especialidades.'));
     $this->form_validation->set_rules('medico[endereco][estado_id]', 'Estado', 'required');
     $this->form_validation->set_rules('medico[endereco][cidade_id]', 'Cidade', 'required');
 
     foreach ($input['medico']['telefone'] as $key => $telefone) {
 
       $this->form_validation->set_rules('medico[telefone]['.$key.'][tipo_telefone_id]', 'Tipo de Telefone', 'required');
-      $this->form_validation->set_rules('medico[telefone]['.$key.'][ddd]', 'DDD', 'required');
-      $this->form_validation->set_rules('medico[telefone]['.$key.'][numero]', 'numero', 'required');
+      $this->form_validation->set_rules('medico[telefone]['.$key.'][ddd]', 'DDD', 'required|min_length[2]');
+      $this->form_validation->set_rules('medico[telefone]['.$key.'][numero]', 'numero', 'required|min_length[9]');
     }
 
     return $this->form_validation->run();
@@ -149,7 +175,7 @@ class Medico extends CI_Controller
       ->get();
     }
 
-      $this->load->table('medicos/table', compact('medicos'), 'medicos/js_medicos');
+      $this->load->table('medicos/table', compact('medicos'));
   }
 
 }

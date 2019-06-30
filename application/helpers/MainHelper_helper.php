@@ -25,6 +25,11 @@ class MainHelper
     }
     return $newarray;
   }
+
+  public static function removeSignals($data)
+  {
+    return preg_replace("/[^0-9]+/", "", $data);
+  }
 }
 
 ?>

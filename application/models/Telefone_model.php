@@ -25,11 +25,16 @@ class Telefone_model extends Eloquent {
   public function getNumeroAttribute()
   {
     $fixedTelefone = [
-      'ddd' => '('.substr($this->attributes['numero'], 0, 2).')',
-      'numero' => MainHelper::formatTelefone(substr($this->attributes['numero'], 2))
+      'ddd' => substr($this->attributes['numero'], 0, 2),
+      'numero' => substr($this->attributes['numero'], 2)
     ];
 
     return $fixedTelefone;
+  }
+
+  public function setNumeroAttribute($data)
+  {
+    $this->attributes['numero'] = MainHelper::removeSignals($data);
   }
 
 }

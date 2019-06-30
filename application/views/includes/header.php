@@ -39,7 +39,7 @@
 
 					<a href="<?= base_url('index.php')?>">
 
-						<img class="img-responsive center-block navbar-brand" src="<?= base_url('assets/img/logo-white.png')?>">
+						<img class="img-responsive center-block navbar-brand" src="<?= base_url('assets/img/icon-white-4.png')?>">
 
 					</a>
 
@@ -49,4 +49,4 @@
 
 		</div>
 
-		<div id="content" class="row" style="margin: 0 auto; width: 90%">
+		<div id="content" class="row">

@@ -35,7 +35,6 @@ class MedicoService
 
   public function update($input, $id)
   {
-    // echo "<pre>"; print_r($input); exit;
     DB::beginTransaction();
 
     try {
@@ -76,7 +75,42 @@ class MedicoService
       echo "<pre>"; print_r($e); exit;
     }
   }
-}
 
+  public function destroy($id)
+  {
+    DB::beginTransaction();
+
+    try {
+
+      Medico_model::find($id)->delete();
+
+      DB::commit();
+
+    } catch (Exception $e) {
+
+      DB::rollback();
+
+      echo "<pre>"; print_r($e); exit;
+    }
+  }
+
+  public function restore($id)
+  {
+    DB::beginTransaction();
+
+    try {
+
+      Medico_model::withTrashed()->find($id)->restore();
+
+      DB::commit();
+
+    } catch (Exception $e) {
+
+      DB::rollback();
+
+      echo "<pre>"; print_r($e); exit;
+    }
+  }
+}
 
 ?>
