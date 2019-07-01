@@ -11,16 +11,23 @@ $(document).ready(function() {
 
   $('.numero').mask(SPMaskBehavior, spOptions);
 
-
   $('#adicionarTel').on('click', function() {
 
     var main = $('#telefoneClone')
 
-    var clone = main.find('.clone').html()
+    var clone = $('.clone').html()
 
     main.append(clone)
 
+    $('.numero').each(function(){
+
+      $(this).mask(SPMaskBehavior, spOptions);
+
+    })
+
     recontar()
+
+    addTelRules()
   })
 
 
@@ -120,5 +127,26 @@ function findCidade(estado_id, cidade_id=null)
 
       $('#cidade').selectpicker('refresh')
     }
+  })
+}
+
+function addTelRules() {
+
+  $('.tipo_telefone').each(function(){
+
+    $(this).rules('add', {required: true})
+
+  })
+
+  $('.ddd').each(function(){
+
+    $(this).rules('add', {required: true, minlength: 2})
+
+  })
+
+  $('.numero').each(function(){
+
+    $(this).rules('add', {required: true, minlength: 8})
+
   })
 }

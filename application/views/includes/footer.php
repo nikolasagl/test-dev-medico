@@ -23,6 +23,8 @@
 
 <script src="<?= base_url('assets/js/$_main.js')?>"></script>
 
+<script src="<?= base_url('assets/js/$_medico-validation.js')?>"></script>
+
 <script src="<?= base_url('assets/js/$_medicos.js')?>"></script>
 
 

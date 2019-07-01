@@ -50,7 +50,15 @@ class MedicoService
       if (count($medico->telefones)) {
 
         foreach ($medico->telefones as $key => $telefone) {
-          $telefone->update(MainHelper::fixTelefone($input['medico']['telefone'][$key]));
+
+          if (isset($input['medico']['telefone'][$key])) {
+
+            $telefone->update(MainHelper::fixTelefone($input['medico']['telefone'][$key]));
+
+          } else {
+
+            $telefone->delete();
+          }
         }
 
         if (count($medico->telefones) < count($input['medico']['telefone'])) {
