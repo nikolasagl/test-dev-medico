@@ -151,6 +151,19 @@ class Medico extends CI_Controller
     return $this->form_validation->run();
   }
 
+  public function check_length($input){
+
+     if(count($this->input->post("medico[especialidade_id][]")) < 3) {
+
+       $this->form_validation->set_message('check_length', 'Selecione ao menos 2 especialidades');
+
+       return false;
+
+     } else {
+
+       return true;
+     }
+  }
 
   public function find()
   {

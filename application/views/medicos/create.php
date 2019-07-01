@@ -144,7 +144,7 @@
 
 							<div class="input-group">
 
-								<select class="form-control tipo_telefone selectpicker" name="medico[telefone][0][tipo_telefone_id]">
+								<select class="form-control tipo_telefone" name="medico[telefone][0][tipo_telefone_id]">
 
 									<option value="" selected disabled>SELECIONE</option>
 

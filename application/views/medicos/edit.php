@@ -134,7 +134,7 @@
 
 			<div id="telefoneClone">
 
-				<div class="clone">
+				<div class="clone clone-edit">
 
           <?php foreach ($medico->telefones as $key => $telefone) { ?>
 
@@ -146,7 +146,7 @@
 
                 <div class="input-group">
 
-                  <select class="form-control tipo_telefone selectpicker" name="<?php echo 'medico[telefone]['.$key.'][tipo_telefone_id]' ?>">
+                  <select class="form-control tipo_telefone" name="<?php echo 'medico[telefone]['.$key.'][tipo_telefone_id]' ?>">
 
                     <option value="">SELECIONE</option>
 
@@ -154,7 +154,11 @@
 
                     <?php foreach ($tipos_telefone as $tipo) { ?>
 
-                      <option value="<?php echo $tipo->id ?>" <?php $tipo->id == $telefone->tipoTelefone->id ? print_r('selected') : '' ?>><?php echo $tipo->nome ?></option>
+											<?php if ($tipo->id != $telefone->tipoTelefone->id): ?>
+
+												<option value="<?php echo $tipo->id ?>"><?php echo $tipo->nome ?></option>
+
+											<?php endif; ?>
 
                     <?php } ?>
 

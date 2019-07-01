@@ -29,9 +29,9 @@ $(document).ready(function() {
     if ($('.telefone').length > 1) {
 
       $('#telefoneClone').find('.telefone:last').remove()
-    }
 
-    recontar()
+      recontar()
+    }
   })
 
 
@@ -87,6 +87,7 @@ function recontar() {
     $(this).find('.numero').attr('name', 'medico[telefone]['+index+'][numero]')
   })
 }
+
 
 function findCidade(estado_id, cidade_id=null)
 {
